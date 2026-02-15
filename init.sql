@@ -1,16 +1,19 @@
-
-
--- Con el usuario ya creado, otorgamos los permisos necesarios para que pueda gestionar la base de datos. El usuario 'administrator' tendrá acceso desde cualquier host
-GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'%' IDENTIFIED BY 'administrator2026';
-GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'localhost' IDENTIFIED BY 'administrator2026';
-
-FLUSH PRIVILEGES;
-
--- Acá creamos la base de datos del capstone
+-- 1. Aseguramos la base de datos
 CREATE DATABASE IF NOT EXISTS capstone_db;
 USE capstone_db;
 
--- Esto es una tabla de prueba
+-- 2. Creamos/Actualizamos el usuario para localhost (por si acaso)
+-- Nota: La clave se define aquí para asegurar que el login local funcione
+CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'administrator2026';
+GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'localhost';
+
+-- 3. Aseguramos permisos para el usuario que ya creó Docker
+GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'%';
+
+-- 4. Refrescamos privilegios
+FLUSH PRIVILEGES;
+
+-- 5. Creamos la tabla de prueba
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
