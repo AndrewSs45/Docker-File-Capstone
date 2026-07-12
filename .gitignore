@@ -1,0 +1,13 @@
+# Environment
+.env
+.env.local
+
+# Docker
+mysql_data/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
