@@ -2,10 +2,16 @@
 
 MySQL 8.0 database setup for the Capstone project.
 
-## Quick Start
+## Usage
 
+### Development
 ```bash
 docker-compose up -d
+```
+
+### Production
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
 ## Connection Details
